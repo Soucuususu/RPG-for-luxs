@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0b10">
+<meta name="description" content="ASCEND — construa sua evolução, um dia de cada vez.">
+<title>ASCEND — Life System</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<style>
+:root{color-scheme:dark;--bg:#09090d;--panel:#111117;--panel2:#17171f;--line:#292933;--text:#f4f4f7;--muted:#9696a5;--accent:#a78bfa;--accent2:#8b5cf6;--green:#a3e635;--red:#fb7185;--radius:20px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% -15%,#20163a 0%,transparent 42%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.app{max-width:1080px;margin:0 auto;padding:22px 18px 100px}.top{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:26px}.brand{display:flex;align-items:center;gap:11px}.logo{width:39px;height:39px;border-radius:13px;background:linear-gradient(145deg,#c4b5fd,#7c3aed);display:grid;place-items:center;color:#0b0714;font-weight:950;font-size:20px;box-shadow:0 7px 30px #8b5cf633}.brand h1{font-size:17px;letter-spacing:3px;margin:0;font-weight:850}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:1.8px;margin-top:3px}.date{font-size:12px;color:var(--muted);text-align:right}
+.grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr);gap:16px}.stack{display:grid;gap:16px;align-content:start}.card{background:linear-gradient(150deg,#15151d,#101015);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:0 14px 40px #00000018}.hero{padding:25px;position:relative;overflow:hidden}.hero:after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;background:#8b5cf615;right:-100px;top:-120px;filter:blur(4px)}.eyebrow{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:750}.hero h2{font-size:clamp(27px,5vw,38px);letter-spacing:-1.6px;line-height:1.1;margin:12px 0 9px}.hero p{margin:0;color:#b8b8c4;max-width:460px;font-size:14px;line-height:1.55}.levelrow{display:flex;align-items:center;gap:13px;margin-top:24px}.level{width:56px;height:56px;flex-shrink:0;border:1px solid #8b5cf655;border-radius:17px;background:#8b5cf61b;display:grid;place-items:center}.level strong{font-size:23px}.level small{display:block;font-size:8px;letter-spacing:1px;color:var(--muted);text-align:center}.xpinfo{flex:1;min-width:0}.xptext{display:flex;justify-content:space-between;gap:8px;font-size:11px;color:#c5c5d0;margin-bottom:8px}.bar{height:7px;background:#292833;border-radius:99px;overflow:hidden}.bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,#8b5cf6,#c4b5fd);border-radius:99px;transition:width .3s}
+.sectionhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}.sectionhead h3{margin:0;font-size:15px;letter-spacing:-.2px}.sectionhead small{color:var(--muted);font-size:11px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{background:#0c0c12;border:1px solid #24242e;border-radius:15px;padding:13px}.stat .symbol{font-size:15px;color:var(--accent);margin-bottom:10px}.stat .num{font-size:23px;font-weight:800;letter-spacing:-1px}.stat .name{font-size:10px;color:var(--muted);margin-top:4px}
+.mission{display:flex;align-items:center;gap:12px;padding:13px 0;border-top:1px solid #272730}.mission:first-of-type{border-top:0}.check{width:24px;height:24px;flex-shrink:0;border:1.5px solid #555563;border-radius:8px;background:transparent;color:#0b0b10;display:grid;place-items:center;padding:0}.mission.done .check{background:var(--green);border-color:var(--green)}.mission.done .missiontitle{text-decoration:line-through;color:#858591}.missiontext{flex:1;min-width:0}.missiontitle{font-size:13px;font-weight:650;overflow-wrap:anywhere}.missionmeta{font-size:10px;color:var(--muted);margin-top:4px}.reward{font-size:10px;color:var(--accent);font-weight:750;white-space:nowrap}.smallbtn,.primary,.ghost{border-radius:12px;border:1px solid var(--line);padding:10px 13px;color:var(--text);background:#1b1b24;font-size:12px;font-weight:700}.primary{background:var(--accent);border-color:var(--accent);color:#10091d}.primary:disabled{opacity:.4;cursor:not-allowed}.ghost{background:transparent}.actions{display:flex;gap:8px;flex-wrap:wrap}.inputrow{display:flex;gap:8px}.inputrow input,.field input,.field select{min-width:0;width:100%;background:#0b0b11;border:1px solid #30303b;border-radius:12px;color:var(--text);padding:12px;font-size:12px}.inputrow input{flex:1}.field{display:grid;gap:7px;margin-bottom:12px}.field label{font-size:11px;color:var(--muted)}.field select{appearance:auto}
+.focuswrap{text-align:center;padding:8px 0 2px}.timer{font-size:49px;letter-spacing:-2px;font-variant-numeric:tabular-nums;font-weight:750;margin:14px 0}.timerhint{color:var(--muted);font-size:11px;margin-bottom:15px}.focusbuttons{display:flex;justify-content:center;gap:8px}.focusbuttons button{min-width:88px}.habitrow{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid #272730}.habitrow:first-of-type{border-top:0}.habitname{flex:1;font-size:12px;font-weight:650}.habitdays{display:flex;gap:5px}.daydot{width:18px;height:18px;border-radius:6px;background:#25252f;border:1px solid #353541}.daydot.on{background:#8b5cf6;border-color:#8b5cf6}.empty{font-size:12px;color:var(--muted);line-height:1.6;padding:14px 0}.bottomnav{display:none}.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#f4f4f7;color:#111118;padding:12px 16px;border-radius:12px;font-size:12px;font-weight:750;box-shadow:0 10px 35px #0007;transition:.22s;z-index:10;max-width:90%;text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}.footer{text-align:center;color:#60606e;font-size:10px;padding:28px 0 0;letter-spacing:.3px}
+dialog{width:min(440px,calc(100% - 28px));background:#14141c;border:1px solid #383844;border-radius:20px;color:var(--text);padding:22px;box-shadow:0 30px 100px #000b}dialog::backdrop{background:#000a;backdrop-filter:blur(5px)}dialog h3{margin:0 0 17px;font-size:18px}.modalactions{display:flex;gap:8px;justify-content:flex-end;margin-top:18px}
+@media(max-width:760px){.app{padding:17px 13px 90px}.grid{grid-template-columns:1fr}.hero{padding:21px}.top{margin-bottom:18px}.date{max-width:125px;line-height:1.5}.card{padding:17px}.bottomnav{display:flex;position:fixed;z-index:5;left:0;right:0;bottom:0;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:#0d0d13ed;backdrop-filter:blur(18px);border-top:1px solid #292933;justify-content:space-around}.bottomnav a{color:#8d8d9a;text-decoration:none;font-size:10px;text-align:center;display:grid;gap:4px;min-width:54px}.bottomnav a b{font-size:17px;font-weight:500}.bottomnav a.active{color:#c4b5fd}.stats{gap:7px}.stat{padding:11px}.stat .num{font-size:20px}.timer{font-size:44px}.footer{padding-bottom:5px}}
+@media(min-width:761px){.app{padding-top:30px}.bottomnav{display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand"><div class="logo">A</div><div><h1>ASCEND</h1><small>YOUR LIFE SYSTEM</small></div></div>
+    <div class="date" id="todayLabel">CARREGANDO DATA</div>
+  </header>
+  <main class="grid">
+    <div class="stack">
+      <section class="card hero" id="inicio">
+        <div class="eyebrow">Seu progresso começa agora</div>
+        <h2>Pequenas ações.<br>Uma nova versão.</h2>
+        <p>Não precisa vencer o dia inteiro. Só precisa cumprir a próxima missão.</p>
+        <div class="levelrow">
+          <div class="level"><div><strong id="levelNum">1</strong><small>NÍVEL</small></div></div>
+          <div class="xpinfo"><div class="xptext"><span id="rankName">Iniciante</span><span id="xpText">0 / 100 XP</span></div><div class="bar"><span id="xpBar"></span></div></div>
+        </div>
+      </section>
+      <section class="card" id="missoes">
+        <div class="sectionhead"><h3>Missões de hoje</h3><small id="missionCount">0 concluídas</small></div>
+        <div id="missionList"></div>
+        <div class="actions" style="margin-top:13px"><button class="smallbtn" id="addMissionBtn">＋ Nova missão</button><button class="ghost" id="resetDayBtn">Reiniciar dia</button></div>
+      </section>
+      <section class="card" id="habitos">
+        <div class="sectionhead"><h3>Hábitos em construção</h3><small>últimos 7 dias</small></div>
+        <div id="habitList"></div>
+        <div class="actions" style="margin-top:13px"><button class="smallbtn" id="addHabitBtn">＋ Novo hábito</button></div>
+      </section>
+    </div>
+    <div class="stack">
+      <section class="card">
+        <div class="sectionhead"><h3>Visão geral</h3><small>seus números</small></div>
+        <div class="stats">
+          <div class="stat"><div class="symbol">↗</div><div class="num" id="totalXp">0</div><div class="name">XP total</div></div>
+          <div class="stat"><div class="symbol">✓</div><div class="num" id="doneTotal">0</div><div class="name">Missões feitas</div></div>
+          <div class="stat"><div class="symbol">♧</div><div class="num" id="streakNum">0</div><div class="name">Dias ativos</div></div>
+        </div>
+      </section>
+      <section class="card" id="foco">
+        <div class="sectionhead"><h3>Sessão de foco</h3><small>uma coisa por vez</small></div>
+        <div class="focuswrap">
+          <div class="eyebrow" id="focusMode">POMODORO · 25 MIN</div>
+          <div class="timer" id="timerDisplay">25:00</div>
+          <div class="timerhint" id="timerHint">Escolha uma tarefa e comece.</div>
+          <div class="focusbuttons"><button class="primary" id="timerStart">Começar</button><button class="ghost" id="timerReset">Resetar</button></div>
+        </div>
+      </section>
+      <section class="card">
+        <div class="sectionhead"><h3>Seu princípio</h3><small>lembrete</small></div>
+        <p style="font-size:14px;line-height:1.65;margin:0;color:#d0d0da">Consistência vale mais que intensidade. Se hoje estiver difícil, reduza a missão — não abandone a si mesmo.</p>
+      </section>
+      <section class="card">
+        <div class="sectionhead"><h3>Dados do app</h3><small>armazenamento local</small></div>
+        <p style="font-size:11px;line-height:1.6;color:var(--muted);margin:0 0 13px">Seu progresso fica salvo neste navegador. Limpar os dados do navegador pode apagar seu progresso.</p>
+        <div class="actions"><button class="smallbtn" id="exportBtn">Exportar backup</button><button class="ghost" id="importBtn">Importar backup</button><button class="ghost" id="clearBtn">Apagar dados</button></div>
+        <input type="file" id="importFile" accept="application/json" hidden>
+      </section>
+    </div>
+  </main>
+  <div class="footer">ASCEND · VERSÃO 1.0 · FEITO PARA EVOLUIR UM DIA DE CADA VEZ</div>
+</div>
+<nav class="bottomnav"><a class="active" href="#inicio"><b>⌂</b>Início</a><a href="#missoes"><b>✓</b>Missões</a><a href="#habitos"><b>◷</b>Hábitos</a><a href="#foco"><b>◎</b>Foco</a></nav>
+<div class="toast" id="toast"></div>
+<dialog id="missionDialog">
+  <form method="dialog" id="missionForm">
+    <h3>Nova missão</h3>
+    <div class="field"><label for="missionTitle">O que você vai fazer?</label><input id="missionTitle" maxlength="70" placeholder="Ex.: estudar programação por 20 min" required></div>
+    <div class="field"><label for="missionCategory">Categoria</label><select id="missionCategory"><option>Disciplina</option><option>Estudos</option><option>Saúde</option><option>Aparência</option><option>Foco</option><option>Espiritualidade</option><option>Outro</option></select></div>
+    <div class="field"><label for="missionXp">Recompensa de XP</label><select id="missionXp"><option value="10">10 XP · Fácil</option><option value="20" selected>20 XP · Média</option><option value="35">35 XP · Desafiadora</option></select></div>
+    <div class="modalactions"><button class="ghost" value="cancel">Cancelar</button><button class="primary" id="saveMission" value="default">Criar missão</button></div>
+  </form>
+</dialog>
+<dialog id="habitDialog">
+  <form method="dialog" id="habitForm">
+    <h3>Novo hábito</h3>
+    <div class="field"><label for="habitTitle">Nome do hábito</label><input id="habitTitle" maxlength="50" placeholder="Ex.: ler 10 minutos" required></div>
+    <div class="modalactions"><button class="ghost" value="cancel">Cancelar</button><button class="primary" id="saveHabit" value="default">Criar hábito</button></div>
+  </form>
+</dialog>
+<script>
+(() => {
+const $ = id => document.getElementById(id);
+const todayKey = () => {const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
+const shiftDay = (key, offset) => {const d=new Date(key+'T12:00:00');d.setDate(d.getDate()+offset);return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
+const defaultMissions = [
+ {id:'m1',title:'Arrumar a cama e organizar o espaço',category:'Disciplina',xp:10},
+ {id:'m2',title:'Estudar ou praticar algo por 20 minutos',category:'Estudos',xp:20},
+ {id:'m3',title:'Fazer algum movimento físico',category:'Saúde',xp:20},
+ {id:'m4',title:'Cuidar da higiene e da aparência',category:'Aparência',xp:10},
+ {id:'m5',title:'Reservar 5 minutos sem distrações',category:'Foco',xp:10}
+];
+const defaultHabits = [{id:'h1',title:'Estudar'},{id:'h2',title:'Movimentar o corpo'},{id:'h3',title:'Cuidar de mim'}];
+let state;
+function fresh(){return {version:1,xp:0,totalDone:0,activeDays:[],missionsDate:todayKey(),missions:defaultMissions.map(m=>({...m,done:false})),habits:defaultHabits,habitLog:{},createdAt:todayKey()}}
+function load(){try{const raw=localStorage.getItem('ascend_v1');if(!raw)return fresh();const parsed=JSON.parse(raw);return {...fresh(),...parsed}}catch{return fresh()}}
+state=load();
+function save(){localStorage.setItem('ascend_v1',JSON.stringify(state))}
+function toast(message){const t=$('toast');t.textContent=message;t.classList.add('show');clearTimeout(toast.timeout);toast.timeout=setTimeout(()=>t.classList.remove('show'),2300)}
+function xpLevel(xp){let level=1,remaining=xp,need=100;while(remaining>=need){remaining-=need;level++;need=100+(level-1)*25}return {level,remaining,need}}
+function rank(level){if(level>=30)return 'Lendário';if(level>=20)return 'Elite';if(level>=12)return 'Avançado';if(level>=6)return 'Consistente';if(level>=3)return 'Em evolução';return 'Iniciante'}
+function ensureToday(){if(state.missionsDate!==todayKey()){state.missionsDate=todayKey();state.missions=state.missions.map(m=>({...m,done:false}));save()}}
+function render(){
+ ensureToday();
+ const d=new Date();$('todayLabel').textContent=d.toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'long'}).toUpperCase();
+ const l=xpLevel(state.xp);$('levelNum').textContent=l.level;$('rankName').textContent=rank(l.level);$('xpText').textContent=`${l.remaining} / ${l.need} XP`;$('xpBar').style.width=`${Math.min(100,l.remaining/l.need*100)}%`;
+ $('totalXp').textContent=state.xp;$('doneTotal').textContent=state.totalDone;$('streakNum').textContent=calcActiveStreak();
+ const done=state.missions.filter(m=>m.done).length;$('missionCount').textContent=`${done} de ${state.missions.length} concluídas`;
+ $('missionList').innerHTML=state.missions.length?state.missions.map(m=>`<div class="mission ${m.done?'done':''}"><button class="check" data-check="${escapeAttr(m.id)}" aria-label="${m.done?'Desmarcar':'Concluir'} missão">${m.done?'✓':''}</button><div class="missiontext"><div class="missiontitle">${escapeHtml(m.title)}</div><div class="missionmeta">${escapeHtml(m.category||'Personalizada')}</div></div><div class="reward">+${m.xp} XP</div></div>`).join(''):'<div class="empty">Nenhuma missão por enquanto. Crie uma missão pequena para começar.</div>';
+ $('habitList').innerHTML=state.habits.length?state.habits.map(h=>{const dots=Array.from({length:7},(_,i)=>{const day=shiftDay(todayKey(),i-6);return `<button class="daydot ${state.habitLog[day]?.includes(h.id)?'on':''}" data-habit="${escapeAttr(h.id)}" data-day="${day}" title="${day}" aria-label="${escapeHtml(h.title)} em ${day}"></button>`}).join('');return `<div class="habitrow"><div class="habitname">${escapeHtml(h.title)}</div><div class="habitdays">${dots}</div></div>`}).join(''):'<div class="empty">Adicione hábitos que você quer fortalecer.</div>';
+}
+function calcActiveStreak(){let n=0;let day=todayKey();if(!state.activeDays.includes(day))day=shiftDay(day,-1);while(state.activeDays.includes(day)){n++;day=shiftDay(day,-1);if(n>3650)break}return n}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function escapeAttr(s){return escapeHtml(s)}
+function addXP(amount){state.xp+=amount;const l=xpLevel(state.xp);return l}
+$('missionList').addEventListener('click',e=>{const b=e.target.closest('[data-check]');if(!b)return;const m=state.missions.find(x=>x.id===b.dataset.check);if(!m)return;if(!m.done){m.done=true;const old=xpLevel(state.xp).level;const newL=addXP(m.xp).level;state.totalDone++;if(!state.activeDays.includes(todayKey()))state.activeDays.push(todayKey());save();render();toast(newL>old?`Nível ${newL} desbloqueado! +${m.xp} XP`:`Missão concluída. +${m.xp} XP`)}else{m.done=false;state.xp=Math.max(0,state.xp-m.xp);state.totalDone=Math.max(0,state.totalDone-1);save();render();toast('Missão desmarcada. XP ajustado.')}});
+$('habitList').addEventListener('click',e=>{const b=e.target.closest('[data-habit]');if(!b)return;const day=b.dataset.day,id=b.dataset.habit;state.habitLog[day]??=[];const arr=state.habitLog[day];if(arr.includes(id))state.habitLog[day]=arr.filter(x=>x!==id);else state.habitLog[day].push(id);save();render()});
+$('addMissionBtn').onclick=()=>{$('missionTitle').value='';$('missionDialog').showModal();setTimeout(()=>$('missionTitle').focus(),80)};
+$('missionForm').addEventListener('submit',e=>{if(e.submitter?.id!=='saveMission')return;e.preventDefault();const title=$('missionTitle').value.trim();if(!title)return;state.missions.push({id:'m'+Date.now(),title,category:$('missionCategory').value,xp:Number($('missionXp').value),done:false});save();$('missionDialog').close();render();toast('Missão criada.')});
+$('addHabitBtn').onclick=()=>{$('habitTitle').value='';$('habitDialog').showModal();setTimeout(()=>$('habitTitle').focus(),80)};
+$('habitForm').addEventListener('submit',e=>{if(e.submitter?.id!=='saveHabit')return;e.preventDefault();const title=$('habitTitle').value.trim();if(!title)return;state.habits.push({id:'h'+Date.now(),title});save();$('habitDialog').close();render();toast('Hábito criado.')});
+$('resetDayBtn').onclick=()=>{if(!confirm('Desmarcar todas as missões de hoje? O XP ganho por elas será removido.'))return;state.missions.forEach(m=>{if(m.done){state.xp=Math.max(0,state.xp-m.xp);state.totalDone=Math.max(0,state.totalDone-1)}m.done=false});save();render();toast('Missões de hoje reiniciadas.')};
+$('exportBtn').onclick=()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='ascend-backup.json';a.click();URL.revokeObjectURL(a.href);toast('Backup exportado.')};
+$('importBtn').onclick=()=>$('importFile').click();
+$('importFile').onchange=async e=>{const file=e.target.files[0];if(!file)return;try{const data=JSON.parse(await file.text());if(typeof data.xp!=='number'||!Array.isArray(data.missions)||!Array.isArray(data.habits))throw Error();state={...fresh(),...data};save();render();toast('Backup importado.')}catch{toast('Arquivo de backup inválido.')}e.target.value=''};
+$('clearBtn').onclick=()=>{if(!confirm('Isso apaga o progresso salvo neste navegador. Continuar?'))return;state=fresh();save();render();toast('Dados reiniciados.')};
+let seconds=25*60, interval=null, running=false;
+function drawTimer(){$('timerDisplay').textContent=`${String(Math.floor(seconds/60)).padStart(2,'0')}:${String(seconds%60).padStart(2,'0')}`}
+$('timerStart').onclick=()=>{if(running){clearInterval(interval);running=false;$('timerStart').textContent='Continuar';$('timerHint').textContent='Pausado. Retome quando estiver pronto.';return}if(seconds<=0)seconds=25*60;running=true;$('timerStart').textContent='Pausar';$('timerHint').textContent='Foco no que importa. Uma tarefa por vez.';interval=setInterval(()=>{seconds--;drawTimer();if(seconds<=0){clearInterval(interval);running=false;$('timerStart').textContent='Começar de novo';$('timerHint').textContent='Sessão concluída. Bom trabalho!';addXP(15);if(!state.activeDays.includes(todayKey()))state.activeDays.push(todayKey());save();render();toast('Sessão de foco concluída. +15 XP');}},1000)};
+$('timerReset').onclick=()=>{clearInterval(interval);running=false;seconds=25*60;drawTimer();$('timerStart').textContent='Começar';$('timerHint').textContent='Escolha uma tarefa e comece.'};
+document.querySelectorAll('.bottomnav a').forEach(a=>a.addEventListener('click',()=>{document.querySelectorAll('.bottomnav a').forEach(x=>x.classList.remove('active'));a.classList.add('active')}));
+render();drawTimer();
+})();
+</script>
+</body>
+</html>
